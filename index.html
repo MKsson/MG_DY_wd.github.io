@@ -18,7 +18,28 @@
   <meta name="description" content="모바일 청첩장" />
 
   <style>
-    :root { --w: 720px; }
+    :root{
+      --w: 720px;
+    
+      /* 🌿 Beige + Gold */
+      --bg: #faf8f4;
+      --paper: #ffffff;
+    
+      --ink: #2f2a24;
+      --muted: #7a7268;
+    
+      --beige: #e7d8c6;
+      --beige-soft: #f3ece3;
+    
+      --gold: #c8a96a;        /* 포인트 골드 */
+      --gold-soft: #e6d7b8;   /* 연한 골드 */
+    
+      --line: #eee4d6;
+      --shadow: 0 14px 32px rgba(60,50,40,.08);
+      --shadow-soft: 0 6px 16px rgba(60,50,40,.06);
+    
+      --radius: 18px;
+    }
 
     body{
       margin:0;
@@ -33,24 +54,67 @@
     h1{ margin:16px 0 6px; font-size:28px; letter-spacing:-0.5px; }
     .sub{ margin:0; color:#666; font-size:14px; }
 
-    .card{ margin:14px 16px; border:1px solid #f0f0f0; border-radius:16px; padding:16px; }
+    .card{
+      margin:18px 16px;
+      padding:18px;
+      border-radius:var(--radius);
+      background:var(--paper);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    
+      /* ✨ 페이드인 초기 상태 */
+      opacity:0;
+      transform:translateY(28px);
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    
+    /* ✨ 화면에 들어오면 */
+    .card.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+    /* 🌿 섹션 디바이더 */
+    .card::before{
+      content:"";
+      display:block;
+      width:44px;
+      height:2px;
+      background:linear-gradient(
+        to right,
+        transparent,
+        var(--gold),
+        transparent
+      );
+      margin:2px auto 14px;
+      border-radius:2px;
+      opacity:.65;
+    }
+
     .row{ display:flex; gap:10px; align-items:flex-start; }
     .k{ width:72px; color:#666; font-size:13px; }
     .v{ flex:1; font-size:14px; line-height:1.6; }
 
     .btns{ display:flex; gap:10px; padding:0 16px 18px; flex-wrap:wrap; }
     a.btn{
-      flex:1 1 45%;
-      text-decoration:none;
-      text-align:center;
-      padding:14px 12px;
-      border-radius:14px;
-      border:1px solid #eee;
-      color:#111;
-      background:#fff;
+      border:1px solid var(--line);
+      background:var(--paper);
+      color:var(--ink);
       font-weight:600;
+      transition:all .25s ease;
     }
-    a.btn.primary{ background:#111; color:#fff; border-color:#111; }
+    
+    a.btn.primary{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:#3a3127;
+      border:none;
+      box-shadow:0 6px 14px rgba(200,169,106,.35);
+    }
+    
+    a.btn:active{
+      transform:translateY(1px);
+    }
 
     .photo{
       width:100%;
@@ -116,7 +180,7 @@
     .modal{
       position:fixed;
       inset:0;
-      background:#000;
+      background: rgba(40, 34, 28, 0.96);
       display:none;
       align-items:center;
       justify-content:center;
@@ -510,5 +574,26 @@
       "mapHeight" : "360"
     }).render();
   </script>
+  <script>
+  /* ✨ 카드 스크롤 페이드인 */
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  document.querySelectorAll(".card").forEach(card => {
+    observer.observe(card);
+  });
+</script>
+
 </body>
 </html>
