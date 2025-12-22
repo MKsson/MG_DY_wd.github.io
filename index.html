@@ -117,17 +117,19 @@
     .modal{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.88);
+      background:#000;
       display:none;
       align-items:center;
       justify-content:center;
       z-index:9999;
-      padding:14px;
+      padding:0; /* ← 중요 */
     }
+
     .modal.open{ display:flex; }
     .modal-inner{
       width:100%;
-      max-width:720px;
+      height:100%;
+      max-width:none;   /* ← 제거 */
       position:relative;
       display:flex;
       align-items:center;
@@ -135,21 +137,11 @@
     }
     .viewer{
       width:100%;
-      max-height:86vh;
-      border-radius:16px;
-      object-fit:contain;
+      height:100%;
+      max-height:100vh;
+      object-fit:contain;   /* 사진 안 잘리게 */
+      border-radius:0;      /* 전체화면 느낌 */
       background:#000;
-      border:1px solid rgba(255,255,255,0.12);
-    }
-    .modal-top{
-      position:absolute;
-      top:-2px;
-      left:0;
-      right:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      pointer-events:none;
     }
     .counter{
       color:#fff;
@@ -171,7 +163,7 @@
       top:50%;
       transform:translateY(-50%);
       border:none;
-      background:rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.15);
       color:#fff;
       width:44px;
       height:44px;
@@ -179,9 +171,20 @@
       font-size:18px;
       font-weight:800;
       cursor:pointer;
+      z-index:10;
     }
-    .prev{ left:-6px; }
-    .next{ right:-6px; }
+    .prev{ left:12px; }
+    .next{ right:12px; }
+    
+    .modal-top{
+      position:absolute;
+      top:12px;
+      left:12px;
+      right:12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
 
     /* 모바일에서 버튼이 너무 바깥으로 나가지 않게 */
     @media (max-width:520px){
