@@ -66,6 +66,27 @@
       background:#fff;
     }
 
+    /* 카카오 지도(퍼가기 이미지) 반응형 박스 */
+    .map-box{
+      width:100%;
+      aspect-ratio: 16 / 5; /* 원하시면 16/6, 4/3로 바꾸셔도 됩니다 */
+      border-radius:18px;
+      border:1px solid #f0f0f0;
+      overflow:hidden;
+      background:#fff;
+    }
+    .map-box a{
+      display:block;
+      width:100%;
+      height:100%;
+    }
+    .map-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
     /* 갤러리 슬라이더 (1:1 정사각) */
     .slider{
       display:flex;
@@ -124,7 +145,24 @@
 
   <section class="card">
     <h2 style="margin:0 0 12px; font-size:16px;">교통편 안내</h2>
-    <img class="photo" style="aspect-ratio:4/3;" src="labinium_loca.png" alt="교통편 안내 이미지" />
+
+    <!-- ✅ 카카오 지도 퍼가기(이미지) : 클릭하면 카카오맵으로 이동 -->
+    <div class="map-box">
+      <a
+        href="https://map.kakao.com/?urlX=527050.9999999978&urlY=1121951.000000002&itemId=1101898247&q=%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80&srcid=1101898247&map_type=TYPE_MAP&from=roughmap"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="카카오맵으로 열기"
+      >
+        <img
+          src="https://t1.daumcdn.net/roughmap/imgmap/a6e8659beac2a093581f8db982c52a79c9b535b956016a6ca19d2e0ea4f9a359"
+          alt="라비니움 위치 지도(카카오맵)"
+          loading="lazy"
+        />
+      </a>
+    </div>
+
+    <!-- PDF 링크 -->
     <div style="margin-top:14px; text-align:center;">
       <a class="btn" href="https://mksson.github.io/MG_DY_wd.github.io/labinium_map.pdf" target="_blank" rel="noreferrer">
         교통편 자세히 보기 (PDF)
@@ -132,20 +170,21 @@
     </div>
   </section>
 
+  <!-- ✅ 버튼: 네이버 지도(유지) + 카카오 길찾기(티맵 대체) -->
   <div class="btns">
     <a class="btn primary" href="https://map.naver.com/p/search/천호라비니움" target="_blank" rel="noreferrer">네이버 지도</a>
-    <a class="btn" href="https://www.tmap.co.kr/search?searchKeyword=라비니움" target="_blank" rel="noreferrer">티맵</a>
+    <a class="btn" href="https://map.kakao.com/link/to/라비니움,37.5384438,127.1224221" target="_blank" rel="noreferrer">카카오 길찾기</a>
   </div>
 
   <section class="card">
     <h2 style="margin:0 0 12px; font-size:16px;">갤러리</h2>
     <div class="slider">
-      <div class="slide"><img class="photo" src="IMG_0138.JPG" /></div>
-      <div class="slide"><img class="photo" src="IMG_0137.JPG" /></div>
-      <div class="slide"><img class="photo" src="IMG_0136.JPG" /></div>
-      <div class="slide"><img class="photo" src="IMG_0135.JPG" /></div>
-      <div class="slide"><img class="photo" src="IMG_0134.JPG" /></div>
-      <div class="slide"><img class="photo" src="IMG_0133.JPG" /></div>
+      <div class="slide"><img class="photo" src="IMG_0138.JPG" alt="갤러리 1" /></div>
+      <div class="slide"><img class="photo" src="IMG_0137.JPG" alt="갤러리 2" /></div>
+      <div class="slide"><img class="photo" src="IMG_0136.JPG" alt="갤러리 3" /></div>
+      <div class="slide"><img class="photo" src="IMG_0135.JPG" alt="갤러리 4" /></div>
+      <div class="slide"><img class="photo" src="IMG_0134.JPG" alt="갤러리 5" /></div>
+      <div class="slide"><img class="photo" src="IMG_0133.JPG" alt="갤러리 6" /></div>
     </div>
   </section>
 
