@@ -3,140 +3,174 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!-- 썸네일(Open Graph) -->
+
+  <!-- Open Graph (썸네일) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="손명기 · 길다영 결혼식에 초대합니다" />
   <meta property="og:description" content="2026년 6월 6일(토) 오후 12시 30분 | 라비니움 웨딩홀" />
   <meta property="og:image" content="https://mksson.github.io/MG_DY_wd.github.io/IMG_0125.JPG" />
   <meta property="og:url" content="https://mksson.github.io/MG_DY_wd.github.io/" />
-  
-  <!-- 카카오톡 전용 -->
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="apple-mobile-web-app-title" content="손명기 · 길다영 결혼식" />
 
   <title>모바일 청첩장</title>
   <meta name="description" content="모바일 청첩장" />
+
   <style>
     :root { --w: 720px; }
-    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; background:#fafafa; color:#111; }
-    .wrap { max-width: var(--w); margin: 0 auto; background:#fff; min-height:100vh; }
-    .hero { padding: 36px 20px 24px; text-align:center; }
+    body {
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      background:#fafafa;
+      color:#111;
+    }
+    .wrap { max-width:var(--w); margin:0 auto; background:#fff; min-height:100vh; }
+    .hero { padding:36px 20px 24px; text-align:center; }
     .badge { display:inline-block; padding:6px 10px; border:1px solid #eee; border-radius:999px; font-size:12px; color:#666; }
     h1 { margin:16px 0 6px; font-size:28px; letter-spacing:-0.5px; }
     .sub { margin:0; color:#666; font-size:14px; }
-    .card { margin: 14px 16px; border:1px solid #f0f0f0; border-radius:16px; padding:16px; }
+
+    .card { margin:14px 16px; border:1px solid #f0f0f0; border-radius:16px; padding:16px; }
     .row { display:flex; gap:10px; align-items:flex-start; }
     .k { width:72px; color:#666; font-size:13px; }
     .v { flex:1; font-size:14px; line-height:1.6; }
-    .btns { display:flex; gap:10px; padding: 0 16px 18px; }
-    a.btn { flex:1; text-decoration:none; text-align:center; padding:14px 12px; border-radius:14px; border:1px solid #eee; color:#111; background:#fff; font-weight:600; }
-    a.btn.primary { background:#111; color:#fff; border-color:#111; }
-    .photo { width:100%; aspect-ratio: 3/4; object-fit: cover; border-radius:18px; border:1px solid #f0f0f0; }
-    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
-    .footer { padding: 22px 16px 34px; text-align:center; color:#888; font-size:12px; }
-    .small { color:#888; font-size:12px; line-height:1.6; }
-    .copy { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-    .hero-photo{
-  aspect-ratio: auto;
-  height: auto;
-  object-fit: contain;
-  background: #fff;
-}
 
-    button { border:1px solid #eee; background:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:600; }
+    .btns { display:flex; gap:10px; padding:0 16px 18px; flex-wrap:wrap; }
+    a.btn {
+      flex:1 1 45%;
+      text-decoration:none;
+      text-align:center;
+      padding:14px 12px;
+      border-radius:14px;
+      border:1px solid #eee;
+      color:#111;
+      background:#fff;
+      font-weight:600;
+    }
+    a.btn.primary { background:#111; color:#fff; border-color:#111; }
+
+    .photo {
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      border-radius:18px;
+      border:1px solid #f0f0f0;
+    }
+
+    /* 대표 이미지 (안 잘리게) */
+    .hero-photo{
+      aspect-ratio:auto;
+      height:auto;
+      object-fit:contain;
+      background:#fff;
+    }
+
+    /* 갤러리 슬라이더 (1:1 정사각) */
+    .slider{
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:6px;
+    }
+    .slide{
+      flex:0 0 80%;
+      scroll-snap-align:center;
+    }
+    .slide .photo{
+      aspect-ratio:1/1;
+    }
+    .slider::-webkit-scrollbar{ display:none; }
+
+    .footer { padding:22px 16px 34px; text-align:center; color:#888; font-size:12px; }
+    .small { color:#888; font-size:12px; line-height:1.6; }
+
+    .copy { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    button {
+      border:1px solid #eee;
+      background:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <span class="badge">INVITATION</span>
-      <h1>신랑 손명기 · 신부 길다영</h1>
-      <p class="sub">2026년 6월 6일(토) 오후 12시 30분</p>
-    </section>
+<div class="wrap">
 
-    <section class="card">
-      <img class="photo hero-photo" src="happy.png" alt="대표 이미지" />
-      <p class="small" style="margin:12px 0 0;">
-        소중한 분들을 모시고 두 사람이 한 마음으로 새 출발을 하려 합니다.<br/>
-        귀한 걸음으로 축복해 주시면 감사하겠습니다.
-      </p>
-    </section>
+  <section class="hero">
+    <span class="badge">INVITATION</span>
+    <h1>신랑 손명기 · 신부 길다영</h1>
+    <p class="sub">2026년 6월 6일(토) 오후 12시 30분</p>
+  </section>
 
-    <section class="card">
-      <div class="row"><div class="k">일시</div><div class="v">2026년 6월 6일(일) 오후 12시 30분</div></div>
-      <div class="row"><div class="k">장소</div><div class="v"><b>라비니움 1층 리츄얼홀</b><br/>서울시 송파구 천호대로 996</div></div>
-      <div class="row"><div class="k">연락</div><div class="v">신랑 010-0000-0000 · 신부 010-0000-0000</div></div>
-    </section>
+  <section class="card">
+    <img class="photo hero-photo" src="happy.png" alt="대표 이미지" />
+    <p class="small" style="margin:12px 0 0;">
+      소중한 분들을 모시고 두 사람이 한 마음으로 새 출발을 하려 합니다.<br/>
+      귀한 걸음으로 축복해 주시면 감사하겠습니다.
+    </p>
+  </section>
 
-<section class="card">
-  <h2 style="margin:0 0 12px; font-size:16px;">교통편 안내</h2>
+  <section class="card">
+    <div class="row"><div class="k">일시</div><div class="v">2026년 6월 6일(토) 오후 12시 30분</div></div>
+    <div class="row"><div class="k">장소</div><div class="v"><b>라비니움 1층 리츄얼홀</b><br/>서울시 송파구 천호대로 996</div></div>
+    <div class="row"><div class="k">연락</div><div class="v">신랑 010-0000-0000 · 신부 010-0000-0000</div></div>
+  </section>
 
-  <!-- 교통편 이미지 -->
-  <img
-    class="photo"
-    style="aspect-ratio: 4 / 3;"
-    src="labinium_loca.png"
-    alt="교통편 안내 이미지"
-  />
-
-  <!-- PDF 링크 -->
-  <div style="margin-top:14px; text-align:center;">
-    <a
-      class="btn"
-      href="https://mksson.github.io/MG_DY_wd.github.io/labinium_map.pdf"
-      target="_blank"
-      rel="noreferrer"
-    >
-      교통편 자세히 보기 (PDF)
-    </a>
-  </div>
-</section>
-    
-    <div class="btns">
-      <a class="btn primary" href="https://map.naver.com/p/search/%EC%B2%9C%ED%98%B8%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80/place/1485729416?c=15.00,0,0,0,dh&isCorrectAnswer=true&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202512221633&locale=ko&svcName=map_pcv5&searchText=%EC%B2%9C%ED%98%B8%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80" target="_blank" rel="noreferrer">네이버 지도</a>
-      <a class="btn" href="https://www.google.co.kr/maps/place/%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80/data=!3m1!4b1!4m6!3m5!1s0x357ca58ef1dd7915:0xa12f048e42c4bb4!8m2!3d37.5384438!4d127.1224221!16s%2Fg%2F11w3qcv18q?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA2N0gBUAM%3D" target="_blank" rel="noreferrer">구글 지도</a>
+  <section class="card">
+    <h2 style="margin:0 0 12px; font-size:16px;">교통편 안내</h2>
+    <img class="photo" style="aspect-ratio:4/3;" src="labinium_loca.png" alt="교통편 안내 이미지" />
+    <div style="margin-top:14px; text-align:center;">
+      <a class="btn" href="https://mksson.github.io/MG_DY_wd.github.io/labinium_map.pdf" target="_blank" rel="noreferrer">
+        교통편 자세히 보기 (PDF)
+      </a>
     </div>
+  </section>
 
-    <section class="card">
-      <h2 style="margin:0 0 12px; font-size:16px;">갤러리</h2>
-      <div class="grid">
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0138.JPG" alt="갤러리1"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0137.JPG" alt="갤러리2"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0136.JPG" alt="갤러리3"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0135.JPG" alt="갤러리4"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0134.JPG" alt="갤러리5"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0133.JPG" alt="갤러리6"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0132.JPG" alt="갤러리7"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0131.JPG" alt="갤러리8"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0130.JPG" alt="갤러리9"/>
-        <img class="photo" style="aspect-ratio:1/1" src="IMG_0138.JPG" alt="갤러리10"/>
-
-      </div>
-      <p class="small" style="margin:10px 0 0;">※ 나중에 본인 사진으로 바꾸면 완성입니다.</p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 10px; font-size:16px;">마음 전하실 곳</h2>
-      <div class="small">아래 버튼을 누르면 계좌번호가 복사됩니다.</div>
-      <div class="copy">
-        <button onclick="copyText('신랑측: 국민 123-456-789012 손명기')">신랑측 계좌 복사</button>
-        <button onclick="copyText('신부측: 신한 110-123-456789 길다영')">신부측 계좌 복사</button>
-      </div>
-      <div id="toast" class="small" style="margin-top:10px;"></div>
-    </section>
-
-    <div class="footer">© 모바일 청첩장 · GitHub Pages</div>
+  <div class="btns">
+    <a class="btn primary" href="https://map.naver.com/p/search/천호라비니움" target="_blank" rel="noreferrer">네이버 지도</a>
+    <a class="btn" href="https://www.tmap.co.kr/search?searchKeyword=라비니움" target="_blank" rel="noreferrer">티맵</a>
   </div>
 
-  <script>
-    function copyText(t){
-      navigator.clipboard.writeText(t).then(()=>{
-        const el = document.getElementById('toast');
-        el.textContent = '복사 완료: ' + t;
-        setTimeout(()=> el.textContent = '', 2500);
-      });
-    }
-  </script>
+  <section class="card">
+    <h2 style="margin:0 0 12px; font-size:16px;">갤러리</h2>
+    <div class="slider">
+      <div class="slide"><img class="photo" src="IMG_0138.JPG" /></div>
+      <div class="slide"><img class="photo" src="IMG_0137.JPG" /></div>
+      <div class="slide"><img class="photo" src="IMG_0136.JPG" /></div>
+      <div class="slide"><img class="photo" src="IMG_0135.JPG" /></div>
+      <div class="slide"><img class="photo" src="IMG_0134.JPG" /></div>
+      <div class="slide"><img class="photo" src="IMG_0133.JPG" /></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 style="margin:0 0 10px; font-size:16px;">마음 전하실 곳</h2>
+    <div class="small">아래 버튼을 누르면 계좌번호가 복사됩니다.</div>
+    <div class="copy">
+      <button onclick="copyText('신랑측: 국민 123-456-789012 손명기')">신랑측 계좌 복사</button>
+      <button onclick="copyText('신부측: 신한 110-123-456789 길다영')">신부측 계좌 복사</button>
+    </div>
+    <div id="toast" class="small" style="margin-top:10px;"></div>
+  </section>
+
+  <div class="footer">© 모바일 청첩장 · GitHub Pages</div>
+</div>
+
+<script>
+function copyText(t){
+  navigator.clipboard.writeText(t).then(()=>{
+    const el = document.getElementById('toast');
+    el.textContent = '복사 완료: ' + t;
+    setTimeout(()=> el.textContent = '', 2500);
+  });
+}
+</script>
+
 </body>
 </html>
