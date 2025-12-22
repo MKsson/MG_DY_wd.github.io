@@ -144,7 +144,7 @@
       touch-action: pan-y; /* 세로 스크롤 허용, 가로 스와이프는 우리가 처리 */
     }
 
-    /* ✅ 실제 이미지 (슬라이드 애니메이션 핵심) */
+    /* ✅ 실제 이미지 */
     .viewer{
       width:100%;
       height:100%;
@@ -221,6 +221,7 @@
     </section>
 
     <section class="card">
+      <!-- ✅ 대표 이미지 파일명만 바꾸시면 됩니다 (예: happy.png -> main.jpg) -->
       <img class="photo hero-photo" src="happy.png" alt="대표 이미지" />
       <p class="small" style="margin:12px 0 0;">
         소중한 분들을 모시고 두 사람이 한 마음으로 새 출발을 하려 합니다.<br/>
@@ -231,6 +232,7 @@
     <section class="card">
       <div class="row"><div class="k">일시</div><div class="v">2026년 6월 6일(토) 오후 12시 30분</div></div>
       <div class="row"><div class="k">장소</div><div class="v"><b>라비니움 1층 리츄얼홀</b><br/>서울시 송파구 천호대로 996</div></div>
+      <!-- ✅ 연락처 수정 -->
       <div class="row"><div class="k">연락</div><div class="v">신랑 010-0000-0000 · 신부 010-0000-0000</div></div>
     </section>
 
@@ -238,11 +240,13 @@
       <h2 style="margin:0 0 12px; font-size:16px;">교통편 안내</h2>
 
       <div class="map-box">
+        <!-- ✅ 카카오맵 퍼가기 "지도 노드" -->
         <div id="daumRoughmapContainer1766393667287"
              class="root_daum_roughmap root_daum_roughmap_landing"></div>
       </div>
 
       <div style="margin-top:14px; text-align:center;">
+        <!-- ✅ PDF 파일명/경로 수정 (레포에 업로드한 파일명과 동일해야 합니다) -->
         <a class="btn" href="https://mksson.github.io/MG_DY_wd.github.io/labinium_map.pdf" target="_blank" rel="noreferrer">
           교통편 자세히 보기 (PDF)
         </a>
@@ -250,7 +254,9 @@
     </section>
 
     <div class="btns">
+      <!-- ✅ 네이버 지도 버튼 (원하신대로 유지) -->
       <a class="btn primary" href="https://map.naver.com/p/search/천호라비니움" target="_blank" rel="noreferrer">네이버 지도</a>
+      <!-- ✅ 카카오 길찾기 (좌표/장소명 수정 가능) -->
       <a class="btn" href="https://map.kakao.com/link/to/라비니움,37.5384438,127.1224221" target="_blank" rel="noreferrer">카카오 길찾기</a>
     </div>
 
@@ -264,6 +270,7 @@
       <h2 style="margin:0 0 10px; font-size:16px;">마음 전하실 곳</h2>
       <div class="small">아래 버튼을 누르면 계좌번호가 복사됩니다.</div>
       <div class="copy">
+        <!-- ✅ 계좌 문구 수정 -->
         <button onclick="copyText('신랑측: 국민 123-456-789012 손명기')">신랑측 계좌 복사</button>
         <button onclick="copyText('신부측: 신한 110-123-456789 길다영')">신부측 계좌 복사</button>
       </div>
@@ -283,7 +290,6 @@
 
       <button class="nav prev" id="galleryPrev" aria-label="이전">‹</button>
 
-      <!-- ✅ 부드러운 스와이프용 래퍼 -->
       <div class="viewer-wrap" id="viewerWrap">
         <img class="viewer" id="galleryViewer" src="" alt="갤러리 이미지" />
       </div>
@@ -301,7 +307,7 @@
       });
     }
 
-    /* ✅ 갤러리 이미지 목록: 여기만 늘리면 자동 반영됩니다 */
+    /* ✅ 갤러리 이미지 목록: 파일명만 맞추면 자동 반영 */
     const GALLERY = [
       "IMG_0138.JPG",
       "IMG_0137.JPG",
@@ -313,6 +319,53 @@
       "IMG_0131.JPG",
       "IMG_0130.JPG"
     ];
+
+    /* =========================================================
+       ✅ 선로딩(캐싱) 워밍업
+       - 모달을 열면 백그라운드로 전체 이미지를 캐시에 올립니다.
+       - decode()까지 수행 가능하면 디코딩 완료 후 캐시되어 스와이프가 더 부드럽습니다.
+       - concurrency(동시 로딩 수)를 너무 키우면 모바일에서 부담이 될 수 있어 3~4 추천
+    ========================================================= */
+    let warmedUp = false;
+
+    function warmUpGallery(concurrency = 4){
+      if (warmedUp) return Promise.resolve();
+      warmedUp = true;
+
+      let i = 0;
+      let active = 0;
+
+      return new Promise((resolve) => {
+        const pump = () => {
+          if (i >= GALLERY.length && active === 0) return resolve();
+
+          while (active < concurrency && i < GALLERY.length) {
+            const src = GALLERY[i++];
+            active++;
+
+            const img = new Image();
+            img.src = src;
+
+            const done = () => { active--; pump(); };
+
+            if (img.decode) {
+              img.decode().then(done).catch(done);
+            } else {
+              img.onload = done;
+              img.onerror = done;
+            }
+          }
+        };
+
+        pump();
+      });
+    }
+
+    // ✅ (옵션) 페이지 로드 직후, 사용자 눈에 띄지 않게 미리 캐시 시작
+    window.addEventListener("load", () => {
+      // 원치 않으시면 아래 한 줄 주석 처리하셔도 됩니다.
+      warmUpGallery(3);
+    });
 
     const grid = document.getElementById("galleryGrid");
     const modal = document.getElementById("galleryModal");
@@ -339,6 +392,10 @@
 
     function openModal(i){
       idx = i;
+
+      // ✅ 모달 열릴 때 선로딩 시작(이미 load에서 했어도 안전)
+      warmUpGallery(4);
+
       renderViewer(false);
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
@@ -352,12 +409,10 @@
     }
 
     function renderViewer(withTransition = false){
-      // 전환 없이 바로 표시할 때는 transition을 잠깐 끄는 게 깔끔합니다.
       if (!withTransition){
         viewer.style.transition = "none";
         viewer.style.transform = "translateX(0)";
         viewer.src = GALLERY[idx];
-        // 다음 프레임부터 원래 transition 복구
         requestAnimationFrame(() => {
           viewer.style.transition = "transform 0.35s ease";
         });
@@ -370,40 +425,32 @@
     function slideTo(newIdx, dir){
       if (GALLERY.length <= 1) return;
       if (animating) return;
+
       animating = true;
-    
-      const w = viewerWrap.clientWidth || window.innerWidth;
-      const nextIdx = (newIdx + GALLERY.length) % GALLERY.length;
-      const nextSrc = GALLERY[nextIdx];
-    
-      // ✅ 다음 이미지 미리 로드
-      const preload = new Image();
-      preload.src = nextSrc;
-    
-      preload.onload = () => {
-        // 1) 현재 이미지 밀어내기
-        viewer.style.transition = "transform 0.35s ease";
-        viewer.style.transform = `translateX(${dir * -w}px)`;
-    
-        setTimeout(() => {
-          // 2) 이미지 교체 (이미 로딩 완료 상태)
-          viewer.style.transition = "none";
-          viewer.src = nextSrc;
-          viewer.style.transform = `translateX(${dir * w}px)`;
-    
-          idx = nextIdx;
-          counter.textContent = (idx + 1) + " / " + GALLERY.length;
-    
-          // 3) 다시 슬라이드 인
+      const w = viewerWrap.clientWidth || viewer.clientWidth || window.innerWidth;
+
+      // 1) 현재 이미지를 dir 방향으로 밀어냄
+      viewer.style.transition = "transform 0.35s ease";
+      viewer.style.transform = `translateX(${dir * -w}px)`;
+
+      setTimeout(() => {
+        // 2) 인덱스 업데이트 + 새 이미지로 교체 (화면 밖에서 대기)
+        idx = (newIdx + GALLERY.length) % GALLERY.length;
+        counter.textContent = (idx + 1) + " / " + GALLERY.length;
+
+        viewer.style.transition = "none";
+        viewer.src = GALLERY[idx];
+        viewer.style.transform = `translateX(${dir * w}px)`;
+
+        // 3) 다음 프레임에 0으로 복귀시키며 슬라이드 인
+        requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              viewer.style.transition = "transform 0.35s ease";
-              viewer.style.transform = "translateX(0)";
-              setTimeout(() => { animating = false; }, 360);
-            });
+            viewer.style.transition = "transform 0.35s ease";
+            viewer.style.transform = "translateX(0)";
+            setTimeout(() => { animating = false; }, 360);
           });
-        }, 350);
-      };
+        });
+      }, 350);
     }
 
     function prev(){ slideTo(idx - 1, -1); }
@@ -427,7 +474,7 @@
       if (e.key === "ArrowRight") next();
     });
 
-    /* ✅ 모바일 스와이프: "부드러운 슬라이드" 호출 */
+    /* ✅ 모바일 스와이프 */
     let startX = 0, startY = 0, isDown = false;
     viewerWrap.addEventListener("touchstart", (e) => {
       const t = e.touches[0];
@@ -442,7 +489,6 @@
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
 
-      // 가로 스와이프만 인정
       if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
 
       if (dx > 0) prev();
@@ -464,6 +510,5 @@
       "mapHeight" : "360"
     }).render();
   </script>
-
 </body>
 </html>
