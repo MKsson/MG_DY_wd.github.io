@@ -69,36 +69,36 @@
     /* ✅ 카카오 지도 퍼가기(JS) 반응형 박스 */
     .map-box{
       width:100%;
-      aspect-ratio: 16 / 5; /* 원하시면 16/6, 4/3로 바꾸셔도 됩니다 */
+      aspect-ratio: 16 / 5;
       border-radius:18px;
       border:1px solid #f0f0f0;
       overflow:hidden;
       background:#fff;
       position:relative;
     }
-    /* 카카오가 내부에서 픽셀 width/height를 쓰므로 100%로 강제 */
     .map-box > div{
       width:100% !important;
       height:100% !important;
     }
 
-    /* 갤러리 슬라이더 (1:1 정사각) */
-    .slider{
-      display:flex;
-      gap:12px;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      padding-bottom:6px;
+    /* ✅ 갤러리 썸네일 그리드 (정사각형) */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
     }
-    .slide{
-      flex:0 0 80%;
-      scroll-snap-align:center;
+    @media (max-width:420px){
+      .grid{ grid-template-columns:repeat(3, 1fr); }
     }
-    .slide .photo{
+    .thumb{
+      width:100%;
       aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid #f0f0f0;
+      cursor:pointer;
+      background:#fff;
     }
-    .slider::-webkit-scrollbar{ display:none; }
 
     .footer { padding:22px 16px 34px; text-align:center; color:#888; font-size:12px; }
     .small { color:#888; font-size:12px; line-height:1.6; }
@@ -111,6 +111,82 @@
       border-radius:12px;
       cursor:pointer;
       font-weight:600;
+    }
+
+    /* ✅ 모달(전체화면) 뷰어 */
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.88);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:14px;
+    }
+    .modal.open{ display:flex; }
+    .modal-inner{
+      width:100%;
+      max-width:720px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .viewer{
+      width:100%;
+      max-height:86vh;
+      border-radius:16px;
+      object-fit:contain;
+      background:#000;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .modal-top{
+      position:absolute;
+      top:-2px;
+      left:0;
+      right:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      pointer-events:none;
+    }
+    .counter{
+      color:#fff;
+      font-size:12px;
+      opacity:0.85;
+      pointer-events:none;
+    }
+    .close{
+      pointer-events:auto;
+      border:none;
+      background:rgba(255,255,255,0.12);
+      color:#fff;
+      border-radius:999px;
+      padding:10px 12px;
+      font-weight:700;
+    }
+    .nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      border:none;
+      background:rgba(255,255,255,0.14);
+      color:#fff;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      font-size:18px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .prev{ left:-6px; }
+    .next{ right:-6px; }
+
+    /* 모바일에서 버튼이 너무 바깥으로 나가지 않게 */
+    @media (max-width:520px){
+      .prev{ left:6px; }
+      .next{ right:6px; }
     }
   </style>
 </head>
@@ -141,13 +217,11 @@
   <section class="card">
     <h2 style="margin:0 0 12px; font-size:16px;">교통편 안내</h2>
 
-    <!-- ✅ 카카오맵 - 지도퍼가기(JS) -->
     <div class="map-box">
       <div id="daumRoughmapContainer1766393667287"
            class="root_daum_roughmap root_daum_roughmap_landing"></div>
     </div>
 
-    <!-- PDF 링크 -->
     <div style="margin-top:14px; text-align:center;">
       <a class="btn" href="https://mksson.github.io/MG_DY_wd.github.io/labinium_map.pdf" target="_blank" rel="noreferrer">
         교통편 자세히 보기 (PDF)
@@ -155,22 +229,16 @@
     </div>
   </section>
 
-  <!-- ✅ 버튼: 네이버 지도 + 카카오 길찾기 -->
   <div class="btns">
     <a class="btn primary" href="https://map.naver.com/p/search/천호라비니움" target="_blank" rel="noreferrer">네이버 지도</a>
     <a class="btn" href="https://map.kakao.com/link/to/라비니움,37.5384438,127.1224221" target="_blank" rel="noreferrer">카카오 길찾기</a>
   </div>
 
+  <!-- ✅ 갤러리: 정사각 썸네일 그리드 + 클릭 시 모달 뷰어 -->
   <section class="card">
     <h2 style="margin:0 0 12px; font-size:16px;">갤러리</h2>
-    <div class="slider">
-      <div class="slide"><img class="photo" src="IMG_0138.JPG" alt="갤러리 1" /></div>
-      <div class="slide"><img class="photo" src="IMG_0137.JPG" alt="갤러리 2" /></div>
-      <div class="slide"><img class="photo" src="IMG_0136.JPG" alt="갤러리 3" /></div>
-      <div class="slide"><img class="photo" src="IMG_0135.JPG" alt="갤러리 4" /></div>
-      <div class="slide"><img class="photo" src="IMG_0134.JPG" alt="갤러리 5" /></div>
-      <div class="slide"><img class="photo" src="IMG_0133.JPG" alt="갤러리 6" /></div>
-    </div>
+    <div class="grid" id="galleryGrid"></div>
+    <p class="small" style="margin:10px 0 0;">사진을 누르면 크게 보고 넘길 수 있습니다.</p>
   </section>
 
   <section class="card">
@@ -186,6 +254,20 @@
   <div class="footer">© 모바일 청첩장 · GitHub Pages</div>
 </div>
 
+<!-- ✅ 갤러리 모달 -->
+<div class="modal" id="galleryModal" aria-hidden="true">
+  <div class="modal-inner" role="dialog" aria-modal="true" aria-label="갤러리 보기">
+    <div class="modal-top">
+      <div class="counter" id="galleryCounter">1 / 1</div>
+      <button class="close" id="galleryClose" aria-label="닫기">✕</button>
+    </div>
+
+    <button class="nav prev" id="galleryPrev" aria-label="이전">‹</button>
+    <img class="viewer" id="galleryViewer" src="" alt="갤러리 이미지" />
+    <button class="nav next" id="galleryNext" aria-label="다음">›</button>
+  </div>
+</div>
+
 <script>
 function copyText(t){
   navigator.clipboard.writeText(t).then(()=>{
@@ -194,6 +276,109 @@ function copyText(t){
     setTimeout(()=> el.textContent = '', 2500);
   });
 }
+
+/* ✅ 갤러리 이미지 목록: 여기만 늘리면 자동 반영됩니다 */
+const GALLERY = [
+  "IMG_0138.JPG",
+  "IMG_0137.JPG",
+  "IMG_0136.JPG",
+  "IMG_0135.JPG",
+  "IMG_0134.JPG",
+  "IMG_0133.JPG",
+  "IMG_0132.JPG",
+  "IMG_0131.JPG",
+  "IMG_0130.JPG"
+];
+
+const grid = document.getElementById("galleryGrid");
+const modal = document.getElementById("galleryModal");
+const viewer = document.getElementById("galleryViewer");
+const counter = document.getElementById("galleryCounter");
+const btnPrev = document.getElementById("galleryPrev");
+const btnNext = document.getElementById("galleryNext");
+const btnClose = document.getElementById("galleryClose");
+
+let idx = 0;
+
+/* 썸네일 렌더 */
+GALLERY.forEach((src, i) => {
+  const img = document.createElement("img");
+  img.className = "thumb";
+  img.src = src;
+  img.alt = "갤러리 " + (i+1);
+  img.loading = "lazy";
+  img.addEventListener("click", () => openModal(i));
+  grid.appendChild(img);
+});
+
+function openModal(i){
+  idx = i;
+  renderViewer();
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+function renderViewer(){
+  viewer.src = GALLERY[idx];
+  counter.textContent = (idx + 1) + " / " + GALLERY.length;
+  btnPrev.style.opacity = (GALLERY.length <= 1) ? 0.2 : 1;
+  btnNext.style.opacity = (GALLERY.length <= 1) ? 0.2 : 1;
+}
+
+function prev(){
+  if (GALLERY.length <= 1) return;
+  idx = (idx - 1 + GALLERY.length) % GALLERY.length;
+  renderViewer();
+}
+
+function next(){
+  if (GALLERY.length <= 1) return;
+  idx = (idx + 1) % GALLERY.length;
+  renderViewer();
+}
+
+/* 버튼 */
+btnPrev.addEventListener("click", prev);
+btnNext.addEventListener("click", next);
+btnClose.addEventListener("click", closeModal);
+
+/* 모달 바깥 클릭하면 닫기 */
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
+
+/* 키보드(데스크탑) */
+document.addEventListener("keydown", (e) => {
+  if (!modal.classList.contains("open")) return;
+  if (e.key === "Escape") closeModal();
+  if (e.key === "ArrowLeft") prev();
+  if (e.key === "ArrowRight") next();
+});
+
+/* ✅ 모바일 스와이프 */
+let startX = 0, startY = 0, isDown = false;
+viewer.addEventListener("touchstart", (e) => {
+  const t = e.touches[0];
+  startX = t.clientX; startY = t.clientY;
+  isDown = true;
+}, {passive:true});
+
+viewer.addEventListener("touchend", (e) => {
+  if (!isDown) return;
+  isDown = false;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - startX;
+  const dy = t.clientY - startY;
+  if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+  if (dx > 0) prev(); else next();
+}, {passive:true});
 </script>
 
 <!-- ✅ 카카오맵 - 지도퍼가기 로더 (지도 2개 이상이면 이 script는 한 번만) -->
