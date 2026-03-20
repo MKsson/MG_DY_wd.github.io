@@ -8,14 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Gowun+Batang:wght@400;700&display=swap"
     rel="stylesheet">
   <style>
     :root {
       --bg: #f7f1ea;
       --paper: #fcfaf7;
-      --text: #2f2a26;
-      --muted: #7d756e;
+      --text: #4a4a4a;
+      --muted: #888888;
       --line: #e7ddd2;
       --accent: #b89a81;
       --accent-dark: #9f7e63;
@@ -35,7 +35,7 @@
       margin: 0;
       background: linear-gradient(to bottom, #f7f1ea 0%, #fbf8f4 100%);
       color: var(--text);
-      font-family: "Noto Serif KR", serif;
+      font-family: "Gowun Batang", serif;
       line-height: 1.8;
       letter-spacing: -0.02em;
     }
@@ -187,6 +187,7 @@
       overflow: hidden;
       aspect-ratio: 1 / 1.24;
       cursor: pointer;
+      border-radius: 4px;
     }
 
     .gallery-item img {
@@ -260,12 +261,49 @@
       color: var(--text);
     }
 
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .countdown-item {
+      border: 1px solid var(--line);
+      background: #fffdfa;
+      padding: 14px 8px;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .countdown-label {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+    }
+
+    .countdown-value {
+      margin-top: 4px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .countdown-message {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 15px;
+      color: var(--text);
+    }
+
     .info-card,
     .account-box {
       border: 1px solid var(--line);
       background: #fffdfa;
       padding: 18px 16px;
       margin-top: 18px;
+      border-radius: 6px;
     }
 
     .info-row {
@@ -290,55 +328,220 @@
       color: var(--text);
     }
 
+    .map-placeholder {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      background: #faf7f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      border-radius: 6px;
+    }
+
+    .map-placeholder img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .map-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .action-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      background: #fffdfa;
+      color: var(--text);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px rgba(80, 62, 45, 0.06);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .action-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(80, 62, 45, 0.1);
+    }
+
+    .action-button:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 5px 10px rgba(80, 62, 45, 0.08);
+      background: #f6efe8;
+    }
+
     .nav-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 12px;
       margin-top: 18px;
     }
 
     .nav-button {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 12px 10px;
+      gap: 8px;
+      min-height: 84px;
+      padding: 14px 10px;
       text-decoration: none;
       border: 1px solid var(--line);
       color: var(--text);
       background: #fffdfa;
-      font-size: 14px;
+      font-size: 13px;
+      border-radius: 6px;
+      box-shadow: 0 10px 20px rgba(80, 62, 45, 0.08);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
     }
 
-    .account-title {
+    .nav-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(80, 62, 45, 0.12);
+    }
+
+    .nav-button:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 6px 10px rgba(80, 62, 45, 0.1);
+      background: #f6efe8;
+    }
+
+    .nav-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid #e7ddd2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f3ee;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .account-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .account-tab {
+      border: 1px solid var(--line);
+      background: #fffdfa;
+      color: var(--text);
+      min-height: 48px;
+      font-family: inherit;
       font-size: 15px;
-      color: var(--muted);
-      margin-bottom: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .account-tab.is-active {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .account-panel {
+      display: none;
+    }
+
+    .account-panel.is-active {
+      display: block;
     }
 
     .account-item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 12px;
-      padding: 12px 0;
+      padding: 16px 0;
       border-top: 1px solid #efe6dc;
       font-size: 15px;
     }
 
-    .account-item:first-of-type {
+    .account-item:first-child {
       border-top: 0;
       padding-top: 0;
     }
 
+    .account-item:last-child {
+      padding-bottom: 0;
+    }
+
     .account-name {
       font-weight: 600;
+      font-size: 16px;
+    }
+
+    .bank-name {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .account-number {
+      margin-top: 4px;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+    }
+
+    .copy-button {
+      flex: 0 0 auto;
+      min-width: 64px;
+      height: 38px;
+      border: 1px solid var(--line);
+      background: #f8f3ee;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
     }
 
     .footer {
-      padding: 26px 20px 34px;
+      padding: 0 20px 34px;
+      margin-top: 2px;
       text-align: center;
       color: var(--muted);
       font-size: 13px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(47, 42, 38, 0.92);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     .lightbox {
@@ -416,6 +619,85 @@
       font-size: 14px;
     }
 
+    .gallery-track {
+      display: none;
+      position: relative;
+      overflow: hidden;
+      margin: 0 -24px;
+      touch-action: pan-y;
+    }
+
+    .gallery-slides {
+      display: flex;
+      transition: transform 0.28s ease;
+      will-change: transform;
+    }
+
+    .gallery-slide {
+      min-width: 100%;
+      padding: 0 24px;
+    }
+
+    .gallery-slide button {
+      width: 100%;
+      border: 0;
+      padding: 0;
+      background: #ede4db;
+      aspect-ratio: 1 / 1.18;
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-dots {
+      display: none;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #d7c7b8;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .gallery-dot.is-active {
+      background: var(--accent-dark);
+      transform: scale(1.25);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        display: none;
+      }
+
+      .gallery-track,
+      .gallery-dots {
+        display: flex;
+      }
+
+      .gallery-track {
+        display: block;
+      }
+    }
+
+    @media (min-width: 769px) {
+
+      .gallery-track,
+      .gallery-dots {
+        display: none !important;
+      }
+    }
+
     @media (max-width: 380px) {
 
       .section,
@@ -446,11 +728,213 @@
       .nav-buttons {
         grid-template-columns: 1fr;
       }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-track {
+        margin-left: -18px;
+        margin-right: -18px;
+      }
+
+      .gallery-slide {
+        padding: 0 18px;
+      }
+    }
+
+    /* Intro Animation Styles */
+    #intro-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #faf7f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: introWrapOut 0.8s ease 4.2s forwards;
+      pointer-events: auto;
+    }
+
+    .intro-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+    }
+
+    .slide1 {
+      background-image: url('main.jpg');
+      animation: slideAnim1 4.2s ease forwards;
+    }
+
+    .slide2 {
+      background-image: url('gallery1.jpg');
+      animation: slideAnim2 4.2s ease forwards;
+    }
+
+    .slide3 {
+      background-image: url('gallery2.jpg');
+      animation: slideAnim3 4.2s ease forwards;
+    }
+
+    .intro-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(47, 42, 38, 0.35);
+      animation: introWrapOut 0.8s ease 4.2s forwards;
+    }
+
+    .intro-text {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+      animation: textAnim 4.2s ease forwards;
+    }
+
+    .intro-text h2 {
+      font-family: inherit;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      margin: 0 0 12px;
+    }
+
+    .intro-text p {
+      font-family: "Gowun Batang", serif;
+      font-size: 16px;
+      letter-spacing: 0.25em;
+      margin: 0;
+    }
+
+    @keyframes slideAnim1 {
+      0% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+
+      15% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      33% {
+        opacity: 1;
+        transform: scale(1.02);
+      }
+
+      40% {
+        opacity: 0;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideAnim2 {
+      0% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+
+      30% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+
+      40% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      66% {
+        opacity: 1;
+        transform: scale(1.02);
+      }
+
+      73% {
+        opacity: 0;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideAnim3 {
+      0% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+
+      63% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+
+      73% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes textAnim {
+      0% {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      10% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      90% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes introWrapOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- Intro Animation -->
+  <div id="intro-wrap">
+    <div class="intro-slide slide1"></div>
+    <div class="intro-slide slide2"></div>
+    <div class="intro-slide slide3"></div>
+    <div class="intro-overlay"></div>
+    <div class="intro-text">
+      <h2>우리의 아름다운 시작</h2>
+      <p>손명기 · 길다영</p>
+    </div>
+  </div>
+
   <main class="page">
     <section class="hero">
       <div class="date-stack">
@@ -500,6 +984,52 @@
         <button class="gallery-item" type="button" data-index="3"><img src="gallery4.jpg" alt="웨딩 갤러리 4" /></button>
         <button class="gallery-item" type="button" data-index="4"><img src="gallery5.jpg" alt="웨딩 갤러리 5" /></button>
         <button class="gallery-item" type="button" data-index="5"><img src="gallery6.jpg" alt="웨딩 갤러리 6" /></button>
+        <button class="gallery-item extra-gallery" type="button" data-index="6" hidden><img src="gallery7.jpg"
+            alt="웨딩 갤러리 7" /></button>
+        <button class="gallery-item extra-gallery" type="button" data-index="7" hidden><img src="gallery8.jpg"
+            alt="웨딩 갤러리 8" /></button>
+        <button class="gallery-item extra-gallery" type="button" data-index="8" hidden><img src="gallery9.jpg"
+            alt="웨딩 갤러리 9" /></button>
+        <button class="gallery-item extra-gallery" type="button" data-index="9" hidden><img src="gallery10.jpg"
+            alt="웨딩 갤러리 10" /></button>
+        <button class="gallery-item extra-gallery" type="button" data-index="10" hidden><img src="gallery11.jpg"
+            alt="웨딩 갤러리 11" /></button>
+        <button class="gallery-item extra-gallery" type="button" data-index="11" hidden><img src="gallery12.jpg"
+            alt="웨딩 갤러리 12" /></button>
+      </div>
+
+      <div class="gallery-track" id="galleryTrack">
+        <div class="gallery-slides" id="gallerySlides">
+          <div class="gallery-slide"><button type="button" data-index="0"><img src="gallery1.jpg"
+                alt="웨딩 갤러리 1" /></button></div>
+          <div class="gallery-slide"><button type="button" data-index="1"><img src="gallery2.jpg"
+                alt="웨딩 갤러리 2" /></button></div>
+          <div class="gallery-slide"><button type="button" data-index="2"><img src="gallery3.jpg"
+                alt="웨딩 갤러리 3" /></button></div>
+          <div class="gallery-slide"><button type="button" data-index="3"><img src="gallery4.jpg"
+                alt="웨딩 갤러리 4" /></button></div>
+          <div class="gallery-slide"><button type="button" data-index="4"><img src="gallery5.jpg"
+                alt="웨딩 갤러리 5" /></button></div>
+          <div class="gallery-slide"><button type="button" data-index="5"><img src="gallery6.jpg"
+                alt="웨딩 갤러리 6" /></button></div>
+          <div class="gallery-slide extra-gallery" hidden><button type="button" data-index="6"><img src="gallery7.jpg"
+                alt="웨딩 갤러리 7" /></button></div>
+          <div class="gallery-slide extra-gallery" hidden><button type="button" data-index="7"><img src="gallery8.jpg"
+                alt="웨딩 갤러리 8" /></button></div>
+          <div class="gallery-slide extra-gallery" hidden><button type="button" data-index="8"><img src="gallery9.jpg"
+                alt="웨딩 갤러리 9" /></button></div>
+          <div class="gallery-slide extra-gallery" hidden><button type="button" data-index="9"><img src="gallery10.jpg"
+                alt="웨딩 갤러리 10" /></button></div>
+          <div class="gallery-slide extra-gallery" hidden><button type="button" data-index="10"><img src="gallery11.jpg"
+                alt="웨딩 갤러리 11" /></button></div>
+          <div class="gallery-slide extra-gallery" hidden><button type="button" data-index="11"><img src="gallery12.jpg"
+                alt="웨딩 갤러리 12" /></button></div>
+        </div>
+      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
+
+      <div class="map-actions">
+        <button class="action-button" type="button" id="toggleGalleryButton">더보기</button>
       </div>
 
       <div class="calendar-wrap">
@@ -566,6 +1096,25 @@
           </tbody>
         </table>
         <div class="calendar-note">손명기 · 길다영의 결혼식이 있는 날입니다.</div>
+        <div class="countdown">
+          <div class="countdown-item">
+            <div class="countdown-label">DAYS</div>
+            <div class="countdown-value" id="ddayDays">00</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-label">HOUR</div>
+            <div class="countdown-value" id="ddayHours">00</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-label">MIN</div>
+            <div class="countdown-value" id="ddayMinutes">00</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-label">SEC</div>
+            <div class="countdown-value" id="ddaySeconds">00</div>
+          </div>
+        </div>
+        <div class="countdown-message" id="countdownMessage">손명기, 길다영의 결혼식이 기다리고 있습니다.</div>
       </div>
     </section>
 
@@ -576,13 +1125,13 @@
       <div class="info-card">
         <div class="info-row">
           <div class="info-label">예식장</div>
-          <div class="info-value">라비니움
+          <div class="info-value">라비니움 웨딩홀 1층 리츄얼홀
             서울특별시 송파구 천호대로 996</div>
         </div>
 
         <div class="info-row">
           <div class="info-label">지하철</div>
-          <div class="info-value">5호선 · 8호선 10번 출구 바로 앞</div>
+          <div class="info-value">5호선 · 8호선 천호역 10번 출구 바로 앞</div>
         </div>
 
         <div class="info-row">
@@ -599,33 +1148,106 @@
         </div>
       </div>
 
+      <div class="map-placeholder">
+        <img src="map.png" alt="약도 이미지" />
+      </div>
+
+      <div class="map-actions">
+        <button class="action-button" type="button" id="showMapImageButton">약도 이미지 보기</button>
+      </div>
+
       <div class="nav-buttons">
-        <a class="nav-button" href="https://map.naver.com/p/search/%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80" target="_blank"
-          rel="noopener noreferrer">네이버지도</a>
-        <a class="nav-button" href="https://tmap.life/3fd8ec6a" target="_blank" rel="noopener noreferrer">티맵</a>
-        <a class="nav-button" href="https://map.kakao.com/link/search/%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80"
-          target="_blank" rel="noopener noreferrer">카카오내비</a>
+        <a class="nav-button"
+          href="https://map.naver.com/p/search/%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80%20%EC%9B%A8%EB%94%A9%ED%99%80"
+          target="_blank" rel="noopener noreferrer"><span class="nav-icon"><img src="nav-naver.png" alt="네이버"
+              style="width:20px;height:20px;" /></span><span>네이버지도</span></a>
+        <a class="nav-button" href="https://tmap.life/" target="_blank" rel="noopener noreferrer"><span
+            class="nav-icon"><img src="nav-tmap.png" alt="티맵"
+              style="width:20px;height:20px;" /></span><span>티맵</span></a>
+        <a class="nav-button"
+          href="https://map.kakao.com/link/search/%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80%20%EC%9B%A8%EB%94%A9%ED%99%80"
+          target="_blank" rel="noopener noreferrer"><span class="nav-icon"><img src="nav-kakao.png" alt="카카오"
+              style="width:20px;height:20px;" /></span><span>카카오내비</span></a>
       </div>
     </section>
 
     <section class="section">
       <div class="eyebrow">Account</div>
       <h2 class="title">마음 전하실 곳</h2>
-      <p class="subtitle">참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</p>
+      <p class="subtitle">참석이 어려우신 분들을 위해<br />계좌번호를 기재하였습니다.<br />너그러운 마음으로 양해 부탁드립니다.</p>
 
-      <div class="account-box">
-        <div class="account-title">혼주 측 계좌</div>
-        <div class="account-item"><span class="account-name">손항조</span><span>000-00-000-000</span></div>
-        <div class="account-item"><span class="account-name">김애자</span><span>000-00-000-000</span></div>
-        <div class="account-item"><span class="account-name">길기성</span><span>000-00-000-000</span></div>
-        <div class="account-item"><span class="account-name">양선아</span><span>000-00-000-000</span></div>
+      <div class="account-tabs" role="tablist" aria-label="계좌 구분">
+        <button class="account-tab is-active" type="button" data-account-tab="groom" role="tab"
+          aria-selected="true">신랑측</button>
+        <button class="account-tab" type="button" data-account-tab="bride" role="tab" aria-selected="false">신부측</button>
+      </div>
+
+      <div class="account-panel is-active" data-account-panel="groom">
+        <div class="account-box">
+          <div class="account-item">
+            <div>
+              <div class="account-name">손항조</div>
+              <div class="bank-name">국민은행</div>
+              <div class="account-number">000-00-000-000</div>
+            </div>
+            <button class="copy-button" type="button" data-copy="국민은행 000-00-000-000">복사</button>
+          </div>
+          <div class="account-item">
+            <div>
+              <div class="account-name">김애자</div>
+              <div class="bank-name">하나은행</div>
+              <div class="account-number">000-00-000-000</div>
+            </div>
+            <button class="copy-button" type="button" data-copy="하나은행 000-00-000-000">복사</button>
+          </div>
+          <div class="account-item">
+            <div>
+              <div class="account-name">손명기</div>
+              <div class="bank-name">신랑</div>
+              <div class="account-number">000-00-000-000</div>
+            </div>
+            <button class="copy-button" type="button" data-copy="000-00-000-000">복사</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-panel" data-account-panel="bride">
+        <div class="account-box">
+          <div class="account-item">
+            <div>
+              <div class="account-name">길기성</div>
+              <div class="bank-name">국민은행</div>
+              <div class="account-number">000-00-000-000</div>
+            </div>
+            <button class="copy-button" type="button" data-copy="국민은행 000-00-000-000">복사</button>
+          </div>
+          <div class="account-item">
+            <div>
+              <div class="account-name">양선아</div>
+              <div class="bank-name">하나은행</div>
+              <div class="account-number">000-00-000-000</div>
+            </div>
+            <button class="copy-button" type="button" data-copy="하나은행 000-00-000-000">복사</button>
+          </div>
+          <div class="account-item">
+            <div>
+              <div class="account-name">길다영</div>
+              <div class="bank-name">신부</div>
+              <div class="account-number">000-00-000-000</div>
+            </div>
+            <button class="copy-button" type="button" data-copy="000-00-000-000">복사</button>
+          </div>
+        </div>
       </div>
     </section>
 
     <footer class="footer">
-      손명기 · 길다영 결혼식에 함께해 주셔서 감사합니다.
+      손명기 · 길다영 결혼식에 함께해 주셔서 감사합니다.<br>
+      <span style="display: inline-block; margin-top: 16px; font-size: 12px; opacity: 0.7; letter-spacing: 0;">made by 신랑 손명기</span>
     </footer>
   </main>
+
+  <div class="toast" id="toast">계좌번호가 복사되었습니다.</div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-inner">
@@ -644,7 +1266,13 @@
       { src: 'gallery3.jpg', alt: '웨딩 갤러리 3' },
       { src: 'gallery4.jpg', alt: '웨딩 갤러리 4' },
       { src: 'gallery5.jpg', alt: '웨딩 갤러리 5' },
-      { src: 'gallery6.jpg', alt: '웨딩 갤러리 6' }
+      { src: 'gallery6.jpg', alt: '웨딩 갤러리 6' },
+      { src: 'gallery7.jpg', alt: '웨딩 갤러리 7' },
+      { src: 'gallery8.jpg', alt: '웨딩 갤러리 8' },
+      { src: 'gallery9.jpg', alt: '웨딩 갤러리 9' },
+      { src: 'gallery10.jpg', alt: '웨딩 갤러리 10' },
+      { src: 'gallery11.jpg', alt: '웨딩 갤러리 11' },
+      { src: 'gallery12.jpg', alt: '웨딩 갤러리 12' }
     ];
 
     const lightbox = document.getElementById('lightbox');
@@ -654,8 +1282,27 @@
     const prevImage = document.getElementById('prevImage');
     const nextImage = document.getElementById('nextImage');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const accountTabs = document.querySelectorAll('.account-tab');
+    const accountPanels = document.querySelectorAll('.account-panel');
+    const copyButtons = document.querySelectorAll('.copy-button');
+    const toast = document.getElementById('toast');
+    const toggleGalleryButton = document.getElementById('toggleGalleryButton');
+    const extraGalleryItems = document.querySelectorAll('.extra-gallery');
+    const showMapImageButton = document.getElementById('showMapImageButton');
+    const ddayDays = document.getElementById('ddayDays');
+    const ddayHours = document.getElementById('ddayHours');
+    const ddayMinutes = document.getElementById('ddayMinutes');
+    const ddaySeconds = document.getElementById('ddaySeconds');
+    const countdownMessage = document.getElementById('countdownMessage');
+    const gallerySlides = document.getElementById('gallerySlides');
+    const galleryDots = document.getElementById('galleryDots');
+    const mobileSlideButtons = document.querySelectorAll('.gallery-slide button');
 
     let currentIndex = 0;
+    let toastTimer = null;
+    let mobileCurrentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
 
     function renderImage(index) {
       currentIndex = (index + images.length) % images.length;
@@ -677,8 +1324,119 @@
       document.body.style.overflow = '';
     }
 
-    galleryItems.forEach((item, index) => {
-      item.addEventListener('click', () => openLightbox(index));
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('계좌번호가 복사되었습니다.');
+      } catch (error) {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast('계좌번호가 복사되었습니다.');
+      }
+    }
+
+    function updateCountdown() {
+      const targetDate = new Date('2026-06-06T12:30:00+09:00').getTime();
+      const now = Date.now();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        ddayDays.textContent = '00';
+        ddayHours.textContent = '00';
+        ddayMinutes.textContent = '00';
+        ddaySeconds.textContent = '00';
+        countdownMessage.textContent = '오늘은 손명기, 길다영의 결혼식 날입니다.';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      ddayDays.textContent = String(days).padStart(2, '0');
+      ddayHours.textContent = String(hours).padStart(2, '0');
+      ddayMinutes.textContent = String(minutes).padStart(2, '0');
+      ddaySeconds.textContent = String(seconds).padStart(2, '0');
+      countdownMessage.textContent = `손명기, 길다영의 결혼식이 ${days}일 남았습니다.`;
+    }
+
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => openLightbox(Number(item.dataset.index || 0)));
+    });
+
+    mobileSlideButtons.forEach((button) => {
+      button.addEventListener('click', () => openLightbox(Number(button.dataset.index || 0)));
+    });
+
+    function getVisibleSlideButtons() {
+      return Array.from(document.querySelectorAll('.gallery-slide button')).filter((button) => !button.closest('.gallery-slide').hidden);
+    }
+
+    function renderGalleryDots() {
+      const buttons = getVisibleSlideButtons();
+      galleryDots.innerHTML = buttons.map((_, index) => `<span class="gallery-dot${index === mobileCurrentIndex ? ' is-active' : ''}"></span>`).join('');
+    }
+
+    function updateMobileSlider() {
+      const buttons = getVisibleSlideButtons();
+      if (!buttons.length) return;
+      if (mobileCurrentIndex > buttons.length - 1) {
+        mobileCurrentIndex = buttons.length - 1;
+      }
+      gallerySlides.style.transform = `translateX(-${mobileCurrentIndex * 100}%)`;
+      renderGalleryDots();
+    }
+
+    gallerySlides.addEventListener('touchstart', (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    gallerySlides.addEventListener('touchend', (event) => {
+      touchEndX = event.changedTouches[0].clientX;
+      const delta = touchStartX - touchEndX;
+      const visibleCount = getVisibleSlideButtons().length;
+      if (Math.abs(delta) < 40 || !visibleCount) return;
+      if (delta > 0 && mobileCurrentIndex < visibleCount - 1) {
+        mobileCurrentIndex += 1;
+      } else if (delta < 0 && mobileCurrentIndex > 0) {
+        mobileCurrentIndex -= 1;
+      }
+      updateMobileSlider();
+    }, { passive: true });
+
+    toggleGalleryButton.addEventListener('click', () => {
+      const shouldOpen = Array.from(extraGalleryItems).some((item) => item.hidden);
+      extraGalleryItems.forEach((item) => {
+        item.hidden = !shouldOpen;
+      });
+      toggleGalleryButton.textContent = shouldOpen ? '접기' : '더보기';
+      if (!shouldOpen) {
+        mobileCurrentIndex = 0;
+      }
+      updateMobileSlider();
+    });
+
+    showMapImageButton.addEventListener('click', () => {
+      lightboxImage.src = 'map.png';
+      lightboxImage.alt = '약도 이미지';
+      lightboxCaption.textContent = '약도 이미지';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     });
 
     prevImage.addEventListener('click', () => renderImage(currentIndex - 1));
@@ -689,12 +1447,167 @@
       if (event.target === lightbox) closeModal();
     });
 
+    let lbTouchStartX = 0;
+    let lbTouchEndX = 0;
+    let lbCurrentX = 0;
+
+    lightbox.addEventListener('touchstart', (event) => {
+      lbTouchStartX = event.changedTouches[0].clientX;
+      lbCurrentX = lbTouchStartX;
+      lightboxImage.style.transition = 'none';
+    }, { passive: true });
+
+    lightbox.addEventListener('touchmove', (event) => {
+      if (lbTouchStartX === 0) return;
+      lbCurrentX = event.changedTouches[0].clientX;
+      const walk = lbCurrentX - lbTouchStartX;
+      lightboxImage.style.transform = `translateX(${walk}px)`;
+      lightboxImage.style.opacity = `${1 - Math.abs(walk) / (window.innerWidth || 1)}`;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (event) => {
+      if (lbTouchStartX === 0) return;
+      lbTouchEndX = event.changedTouches[0].clientX;
+      const delta = lbTouchStartX - lbTouchEndX;
+      
+      lightboxImage.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+      
+      if (Math.abs(delta) > 50 && lbCurrentX !== lbTouchStartX) {
+        if (delta > 0) { // Swipe left (next)
+          lightboxImage.style.transform = `translateX(-100px)`;
+          lightboxImage.style.opacity = '0';
+          setTimeout(() => {
+            renderImage(currentIndex + 1);
+            lightboxImage.style.transition = 'none';
+            lightboxImage.style.transform = `translateX(100px)`;
+            requestAnimationFrame(() => {
+              lightboxImage.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+              lightboxImage.style.transform = 'translateX(0)';
+              lightboxImage.style.opacity = '1';
+            });
+          }, 250);
+        } else { // Swipe right (prev)
+          lightboxImage.style.transform = `translateX(100px)`;
+          lightboxImage.style.opacity = '0';
+          setTimeout(() => {
+            renderImage(currentIndex - 1);
+            lightboxImage.style.transition = 'none';
+            lightboxImage.style.transform = `translateX(-100px)`;
+            requestAnimationFrame(() => {
+              lightboxImage.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+              lightboxImage.style.transform = 'translateX(0)';
+              lightboxImage.style.opacity = '1';
+            });
+          }, 250);
+        }
+      } else {
+        lightboxImage.style.transform = 'translateX(0)';
+        lightboxImage.style.opacity = '1';
+      }
+      
+      lbTouchStartX = 0;
+    }, { passive: true });
+
+    accountTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.accountTab;
+
+        accountTabs.forEach((item) => {
+          item.classList.toggle('is-active', item === tab);
+          item.setAttribute('aria-selected', item === tab ? 'true' : 'false');
+        });
+
+        accountPanels.forEach((panel) => {
+          panel.classList.toggle('is-active', panel.dataset.accountPanel === target);
+        });
+      });
+    });
+
+    copyButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        copyText(button.dataset.copy || '');
+      });
+    });
+
+    updateCountdown();
+    updateMobileSlider();
+    setInterval(updateCountdown, 1000);
+
     document.addEventListener('keydown', (event) => {
       if (!lightbox.classList.contains('open')) return;
       if (event.key === 'Escape') closeModal();
       if (event.key === 'ArrowLeft') renderImage(currentIndex - 1);
       if (event.key === 'ArrowRight') renderImage(currentIndex + 1);
     });
+  </script>
+
+  <!-- BGM Audio & Toggle -->
+  <audio id="bgm" src="bgm.mp3" loop autoplay></audio>
+  <button id="bgm-toggle" class="bgm-toggle">🎵</button>
+  <style>
+    .bgm-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10000;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(80, 62, 45, 0.15);
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: transform 0.2s ease, background 0.2s ease;
+      color: var(--text);
+    }
+
+    .bgm-toggle:hover {
+      transform: scale(1.05);
+      background: #fff;
+    }
+  </style>
+  <script>
+    const bgm = document.getElementById('bgm');
+    const bgmToggle = document.getElementById('bgm-toggle');
+    let isBgmPlaying = false;
+
+    // Load 시점에 자동재생 시도 (스마트폰 브라우저 정책상 사용자 상호작용 전에 막힐 수 있음)
+    const playPromise = bgm.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isBgmPlaying = true;
+        bgmToggle.textContent = '🎶';
+      }).catch(() => {
+        isBgmPlaying = false;
+        bgmToggle.textContent = '🎵';
+      });
+    }
+
+    bgmToggle.addEventListener('click', () => {
+      if (isBgmPlaying) {
+        bgm.pause();
+        bgmToggle.textContent = '🎵';
+      } else {
+        bgm.play().catch(console.error);
+        bgmToggle.textContent = '🎶';
+      }
+      isBgmPlaying = !isBgmPlaying;
+    });
+
+    // 화면 아무 곳이나 터치/클릭 시 자동재생 (최초 접속 시 자동재생이 막힌 경우 대비)
+    document.body.addEventListener('click', () => {
+      if (!isBgmPlaying) {
+        bgm.play().then(() => {
+          isBgmPlaying = true;
+          bgmToggle.textContent = '🎶';
+        }).catch(() => { });
+      }
+    }, { once: true });
   </script>
 </body>
 
