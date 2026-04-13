@@ -62,7 +62,7 @@
     }
 
     .section {
-      padding: 36px 24px;
+      padding: 28px 24px;
       border-top: 1px solid rgba(231, 221, 210, 0.75);
     }
 
@@ -139,7 +139,7 @@
     }
 
     .title {
-      margin: 0 0 20px;
+      margin: 0 0 12px;
       text-align: center;
       font-size: 28px;
       font-weight: 500;
@@ -323,9 +323,39 @@
     }
 
     .info-value {
-      white-space: pre-line;
+      white-space: normal;
       font-size: 15px;
       color: var(--text);
+    }
+
+    .info-sub-item {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .info-sub-title {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent-dark);
+      background: #fdf6f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+
+    .info-sub-content {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 0;
+    }
+
+    .info-sub-tip {
+      color: var(--accent);
+      font-weight: 600;
     }
 
     .map-placeholder {
@@ -1135,25 +1165,29 @@
         </div>
 
         <div class="info-row">
-          <div class="info-label">🚗 자가용 이용 시(천호역 6번 출구 앞)</div>
-          <div class="info-value">주소(티맵) : 천호지하공영주차장 검색(서울시 강동구 천호대로 지하 997)
-            주소(네이버 지도) : 천호지하주자창입구 검색(서울 강동구 성내동)
-            주소(카카오맵) : 투루카 천호역 6번출구 검색(천호지하공영주차장)
-            천호공영주차장(천호입구) 지하 1, 2층 기둥번호 A~D기둥 20~60번 사이
-
-            Tip
-            천호역 공영주자창 A~D 기둥 1번쪽에 주차하신 후.
-            1번쪽과 연결된 천호역 6번출구로 들어오셔서 10번출구로 나오시면 가장 편리합니다.(도보 5~10분 소요)
-
-            셔틀 탑승
-            지하공영주차장 A ~ D 기둥 20 ~ 40번 사이 탑승 가능합니다.
-
-            주차요금
-            2층 연회장 입구에서 1시간 30분 무료 주차권 발급
-
-            신부대기실 안내
-            예식 시간 10분 전부터 신부대기실 입장이 제한됩니다.
-            따듯한 축하를 가까이에서 함께해주실 수 있도록 일찍 와주시면 감사하겠습니다.
+          <div class="info-label">🚗 자가용 이용 시</div>
+          <div class="info-value">
+            <div>
+              <span class="info-sub-tip">티맵</span> : 천호지하공영주차장 검색<br>
+              <span class="info-sub-tip">네이버 지도</span> : 천호지하주자창입구 검색<br>
+              <span class="info-sub-tip">카카오맵</span> : 투루카 천호역 6번출구 검색
+            </div>
+            <div class="info-sub-item">
+              <div class="info-sub-title">주차 위치</div>
+              <div class="info-sub-content">천호공영주차장(천호입구) 지하 1, 2층 기둥번호 <strong>A~D기둥 20~60번</strong> 사이</div>
+            </div>
+            <div class="info-sub-item">
+              <div class="info-sub-title">💡 Tip</div>
+              <div class="info-sub-content">천호역 공영주차장 <strong>A~D 기둥 1번쪽</strong>에 주차하신 후, 연결된 천호역 6번출구로 들어오셔서 <strong>10번출구</strong>로 나오시면 가장 편리합니다. (도보 5~10분 소요)</div>
+            </div>
+            <div class="info-sub-item">
+              <div class="info-sub-title">🚐 셔틀 탑승</div>
+              <div class="info-sub-content">지하공영주차장 <strong>A ~ D 기둥 20 ~ 40번</strong> 사이에서 탑승 가능합니다.</div>
+            </div>
+            <div class="info-sub-item">
+              <div class="info-sub-title">🎫 주차요금</div>
+              <div class="info-sub-content">2층 연회장 입구에서 <strong>1시간 30분 무료 주차권</strong> 발급해 드립니다.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1179,6 +1213,20 @@
           href="https://map.kakao.com/link/search/%EB%9D%BC%EB%B9%84%EB%8B%88%EC%9B%80%20%EC%9B%A8%EB%94%A9%ED%99%80"
           target="_blank" rel="noopener noreferrer"><span class="nav-icon"><img src="nav-kakao.png" alt="카카오"
               style="width:20px;height:20px;" /></span><span>카카오내비</span></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Notice</div>
+      <h2 class="title">신부대기실 안내</h2>
+      <div class="info-card" style="text-align: left;">
+        <div style="font-size: 24px; margin-bottom: 0px;"></div>
+        <p class="info-value" style="line-height: 2; margin: 0;">
+          👰‍♀️ 예식 시간 <strong>10분 전</strong>부터
+          신부대기실 입장이 제한됩니다.
+          따뜻한 축하를 가까이에서 함께해주실 수 있도록
+          일찍 와주시면 감사하겠습니다.
+        </p>
       </div>
     </section>
 
